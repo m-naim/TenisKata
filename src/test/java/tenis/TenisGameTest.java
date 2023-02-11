@@ -1,6 +1,7 @@
 package tenis;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
@@ -76,6 +77,12 @@ public class TenisGameTest {
 		assertEquals(expected,printScore.getPrints());
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void ShouldThrowIllegaleInput() {
+		PrintScoreMock printScore= new PrintScoreMock();
+		TenisGame tenisGame = new TenisGame(printScore);
+		tenisGame.displayScore("ABAC");
 	
+	}
 
 }
