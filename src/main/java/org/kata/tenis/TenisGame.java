@@ -1,6 +1,8 @@
 package org.kata.tenis;
 
 public class TenisGame {	 
+	private static final int WINING_SCORE = 3;
+
 	PrintScore printScore;
 	
 	Player playerA;
@@ -23,8 +25,18 @@ public class TenisGame {
 	}
 
 	public void computeScore(Player ballWinner, Player oppenent) {
-		ballWinner.scores();
-		printScore.print(String.format("Player A : %s / Player B : %s", playerA.getTranslatedScore(), playerB.getTranslatedScore()));
+		if(hasWonTheGame(ballWinner.getScore(),oppenent.getScore())) {
+			printScore.print(String.format("Player %s wins the game", ballWinner.getName()));
+		}
+		else {
+			ballWinner.scores();			
+			printScore.print(String.format("Player A : %s / Player B : %s", playerA.getTranslatedScore(), playerB.getTranslatedScore()));
+		}
+	}
+
+
+	private boolean hasWonTheGame(int winnerScore, int oppenentScore) {
+		return winnerScore>=WINING_SCORE && oppenentScore<WINING_SCORE;
 	}
 	
 }

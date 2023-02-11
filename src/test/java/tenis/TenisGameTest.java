@@ -23,5 +23,36 @@ public class TenisGameTest {
 				);
 		assertEquals(expected,printScore.getPrints());
 	}
+	
+	@Test
+	public void AShouldWinTheGame() {
+		PrintScoreMock printScore= new PrintScoreMock();
+		TenisGame tenisGame = new TenisGame(printScore);
+		tenisGame.displayScore("ABAAA");
+		List<String> expected= Arrays.asList(
+				"Player A : 15 / Player B : 0",
+				"Player A : 15 / Player B : 15",
+				"Player A : 30 / Player B : 15",
+				"Player A : 40 / Player B : 15",
+				"Player A wins the game"
+				);
+		assertEquals(expected,printScore.getPrints());
+	}
+	
+	@Test
+	public void BShouldWinTheGame() {
+		PrintScoreMock printScore= new PrintScoreMock();
+		TenisGame tenisGame = new TenisGame(printScore);
+		tenisGame.displayScore("ABABBB");
+		List<String> expected= Arrays.asList(
+				"Player A : 15 / Player B : 0",
+				"Player A : 15 / Player B : 15",
+				"Player A : 30 / Player B : 15",
+				"Player A : 30 / Player B : 30",
+				"Player A : 30 / Player B : 40",
+				"Player B wins the game"
+				);
+		assertEquals(expected,printScore.getPrints());
+	}
 
 }
