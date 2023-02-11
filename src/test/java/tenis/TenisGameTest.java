@@ -1,13 +1,11 @@
 package tenis;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-import org.kata.tenis.PrintScoreImpl;
 import org.kata.tenis.TenisGame;
 
 import tenis.mock.PrintScoreMock;
@@ -82,7 +80,6 @@ public class TenisGameTest {
 		PrintScoreMock printScore= new PrintScoreMock();
 		TenisGame tenisGame = new TenisGame(printScore);
 		tenisGame.displayScore("ABAC");
-	
 	}
 
 }
