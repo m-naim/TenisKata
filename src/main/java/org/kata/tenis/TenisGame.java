@@ -28,6 +28,10 @@ public class TenisGame {
 		if(hasWonTheGame(ballWinner.getScore(),oppenent.getScore())) {
 			printScore.print(String.format("Player %s wins the game", ballWinner.getName()));
 		}
+		else if(oppenentHasAdventage(ballWinner.getScore(),oppenent.getScore())){
+			oppenent.looseAdventage();
+			printScore.print(String.format("Player A : %s / Player B : %s", playerA.getTranslatedScore(), playerB.getTranslatedScore()));
+		}
 		else {
 			ballWinner.scores();			
 			printScore.print(String.format("Player A : %s / Player B : %s", playerA.getTranslatedScore(), playerB.getTranslatedScore()));
@@ -36,7 +40,11 @@ public class TenisGame {
 
 
 	private boolean hasWonTheGame(int winnerScore, int oppenentScore) {
-		return winnerScore>=WINING_SCORE && oppenentScore<WINING_SCORE;
+		return (winnerScore>=WINING_SCORE && oppenentScore<WINING_SCORE) 
+				|| (winnerScore>=WINING_SCORE && winnerScore>oppenentScore) ;
+	}
+	private boolean oppenentHasAdventage(int winnerScore, int oppenentScore) {
+		return winnerScore>=WINING_SCORE && oppenentScore>winnerScore;
 	}
 	
 }

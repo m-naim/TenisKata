@@ -39,7 +39,7 @@ public class Player {
 		throw new IllegalArgumentException("Illegal score: " + score);
 	}
 
-	public void removeAdventage() {
+	public void looseAdventage() {
 		this.score-=1;
 	}
 }
