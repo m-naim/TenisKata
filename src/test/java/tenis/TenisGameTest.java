@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.kata.tenis.TenisGame;
+import org.kata.tenis.exeptions.GameEndedExeption;
 
 import tenis.mock.PrintScoreMock;
 
@@ -80,6 +81,13 @@ public class TenisGameTest {
 		PrintScoreMock printScore= new PrintScoreMock();
 		TenisGame tenisGame = new TenisGame(printScore);
 		tenisGame.displayScore("ABAC");
+	}
+	
+	@Test(expected=GameEndedExeption.class)
+	public void ShouldThrowGameEndedExeption() {
+		PrintScoreMock printScore= new PrintScoreMock();
+		TenisGame tenisGame = new TenisGame(printScore);
+		tenisGame.displayScore("AAAAAAA");
 	}
 
 }

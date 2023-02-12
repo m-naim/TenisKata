@@ -3,6 +3,8 @@ package org.kata.tenis;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.kata.tenis.exeptions.GameEndedExeption;
+
 public class TenisGame {	 
 	private static final int WINING_SCORE = 3;
 
@@ -10,6 +12,8 @@ public class TenisGame {
 	
 	Player playerA;
 	Player playerB;
+	
+	Boolean gameEnded=false;
 	
 	public TenisGame(PrintScore printScore) {
 		this.printScore = printScore;
@@ -26,6 +30,7 @@ public class TenisGame {
 		}
 		String result="";
 		for (String ballWinner : input.split("")) {
+			if(gameEnded) throw new GameEndedExeption();
 			if (ballWinner.equalsIgnoreCase("A")) result=computeScore(playerA, playerB);
 			if (ballWinner.equalsIgnoreCase("B")) result=computeScore(playerB, playerA);
 			printScore.print(result);
@@ -35,6 +40,7 @@ public class TenisGame {
 
 	public String computeScore(Player ballWinner, Player oppenent) {
 		if(hasWonTheGame(ballWinner.getScore(),oppenent.getScore())) {
+			gameEnded=true;
 			return String.format("Player %s wins the game", ballWinner.getName());
 		}
 		else if(oppenentHasAdventage(ballWinner.getScore(),oppenent.getScore())){
